@@ -1,0 +1,208 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        // Soft Blue - Primary color (calm, professional)
+        primary: {
+          50: '#f0f7ff',
+          100: '#e0eeff',
+          200: '#b9ddff',
+          300: '#7cc2ff',
+          400: '#4fa3ff',
+          500: '#2b8ce6',
+          600: '#1a6db3',
+          700: '#15528a',
+          800: '#174571',
+          900: '#1a3c5a',
+          950: '#0d2438',
+        },
+        // Soft Purple - Secondary color (creative, friendly)
+        secondary: {
+          50: '#f8f5ff',
+          100: '#f0ebff',
+          200: '#ddd4ff',
+          300: '#c3b2ff',
+          400: '#a882ff',
+          500: '#8b5bff',
+          600: '#7532ff',
+          700: '#6a1eff',
+          800: '#5915d1',
+          900: '#4b14a8',
+          950: '#2e0667',
+        },
+        // Soft Teal - Accent color (fresh, modern)
+        accent: {
+          50: '#f0fdfa',
+          100: '#ccf5ef',
+          200: '#99eadf',
+          300: '#66d9cf',
+          400: '#4abfb0',
+          500: '#2da599',
+          600: '#247d73',
+          700: '#21615a',
+          800: '#1e4f4a',
+          900: '#1d3f3b',
+          950: '#0b211f',
+        },
+        // Muted Green - Success (trust, growth)
+        success: {
+          50: '#f2fdf3',
+          100: '#e2fae7',
+          200: '#c7f5d0',
+          300: '#9ee8ae',
+          400: '#6dd67f',
+          500: '#45c25f',
+          600: '#2ea548',
+          700: '#2a7f3b',
+          800: '#276534',
+          900: '#21532b',
+          950: '#0e2b16',
+        },
+        // Soft Orange - Warning (warm, attention)
+        warning: {
+          50: '#fff8f2',
+          100: '#feefe0',
+          200: '#fcd9c2',
+          300: '#fabc98',
+          400: '#f79b6e',
+          500: '#f4783d',
+          600: '#e45a1a',
+          700: '#bd4515',
+          800: '#973716',
+          900: '#792f14',
+          950: '#411708',
+        },
+        // Soft Red - Danger (attention without alarm)
+        danger: {
+          50: '#fff2f2',
+          100: '#ffe1e1',
+          200: '#ffc8c8',
+          300: '#ffa0a0',
+          400: '#ff7070',
+          500: '#f74d4d',
+          600: '#e62e2e',
+          700: '#c91f1f',
+          800: '#b81e1e',
+          900: '#982020',
+          950: '#520d0d',
+        },
+        // Soft Indigo - Info (trust, knowledge)
+        info: {
+          50: '#f5f7ff',
+          100: '#edefff',
+          200: '#dedeff',
+          300: '#c5c7ff',
+          400: '#a6a9ff',
+          500: '#8887ff',
+          600: '#6f66ff',
+          700: '#5c51f5',
+          800: '#4e44dd',
+          900: '#4238b4',
+          950: '#282558',
+        },
+        // Muted Gold - Achievement (warm, celebration)
+        xp: {
+          50: '#fffef4',
+          100: '#fffce0',
+          200: '#fff8c0',
+          300: '#fff06b',
+          400: '#ffde32',
+          500: '#f5c600',
+          600: '#c99c00',
+          700: '#a07900',
+          800: '#846000',
+          900: '#6f4e00',
+          950: '#432800',
+        },
+        // Soft Sage - Balance (calm, natural)
+        sage: {
+          50: '#f4f7f5',
+          100: '#e4ede7',
+          200: '#cdd9d0',
+          300: '#a8bca4',
+          400: '#819882',
+          500: '#657c6a',
+          600: '#506453',
+          700: '#425146',
+          800: '#36433b',
+          900: '#2e3730',
+          950: '#1a211c',
+        },
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Poppins', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        'bounce-slow': 'bounce 2s infinite',
+        'pulse-slow': 'pulse 3s infinite',
+        'spin-slow': 'spin 3s linear infinite',
+        'float': 'float 3s ease-in-out infinite',
+        'glow': 'glow 2s ease-in-out infinite alternate',
+        'slide-up': 'slideUp 0.3s ease-out',
+        'slide-down': 'slideDown 0.3s ease-out',
+        'fade-in': 'fadeIn 0.5s ease-out',
+        'scale-in': 'scaleIn 0.2s ease-out',
+        'xp-gain': 'xpGain 0.6s ease-out',
+        'level-up': 'levelUp 1s ease-out',
+      },
+      keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        glow: {
+          '0%': { boxShadow: '0 0 5px rgba(249, 115, 22, 0.5)' },
+          '100%': { boxShadow: '0 0 20px rgba(249, 115, 22, 0.8)' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        slideDown: {
+          '0%': { transform: 'translateY(-100%)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        scaleIn: {
+          '0%': { transform: 'scale(0.9)', opacity: '0' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+        xpGain: {
+          '0%': { transform: 'translateY(0) scale(1)', opacity: '1' },
+          '50%': { transform: 'translateY(-20px) scale(1.1)', opacity: '0.8' },
+          '100%': { transform: 'translateY(-40px) scale(1)', opacity: '0' },
+        },
+        levelUp: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '25%': { transform: 'scale(1.2)', opacity: '0.8' },
+          '50%': { transform: 'scale(1.1)', opacity: '1' },
+          '75%': { transform: 'scale(1.15)', opacity: '0.9' },
+          '100%': { transform: 'scale(1)', opacity: '1' },
+        },
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23f97316\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"4\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+      },
+      boxShadow: {
+        'glow': '0 0 20px rgba(249, 115, 22, 0.3)',
+        'glow-lg': '0 0 30px rgba(249, 115, 22, 0.4)',
+        'inner-glow': 'inset 0 0 20px rgba(249, 115, 22, 0.2)',
+      }
+    },
+  },
+  plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
+  ],
+}
