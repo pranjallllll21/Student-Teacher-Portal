@@ -1,6 +1,6 @@
 {
-  "short_name": "student teacher portal",
-  "name": "student teacher portal",
+  "short_name": "SMARTCONNECT",
+  "name": "SMARTCONNECT",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,13 +8,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
+      "src": "logo.svg",
+      "type": "image/svg+xml",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "logo.svg",
+      "type": "image/svg+xml",
       "sizes": "512x512"
     }
   ],

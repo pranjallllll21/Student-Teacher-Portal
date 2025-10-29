@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 // Layout Components
 import Layout from './components/Layout/Layout';
@@ -42,6 +42,9 @@ import Rewards from './pages/Gamification/Rewards';
 import Messages from './pages/Communication/Messages';
 import Announcements from './pages/Communication/Announcements';
 
+// Future Tech Components
+import AIAssistant from './pages/FutureTech/AIAssistant';
+import BlockchainCertificates from './pages/FutureTech/BlockchainCertificates';
 
 // Profile Components
 import Profile from './pages/Profile/Profile';
@@ -101,8 +104,8 @@ function App() {
   return (
     <Router>
       <Helmet>
-        <title>student teacher portal</title>
-        <meta name="description" content="Next-generation educational platform with gamification and modern learning tools" />
+        <title>SMARTCONNECT</title>
+        <meta name="description" content="SMARTCONNECT — Next-generation educational platform with gamification and real-time collaboration" />
       </Helmet>
       
       <Routes>
@@ -188,6 +191,18 @@ function App() {
           {/* Communication Routes */}
           <Route path="/messages" element={<Messages />} />
           <Route path="/announcements" element={<Announcements />} />
+
+          {/* Future Tech Routes */}
+          <Route path="/ai-assistant" element={
+            <ProtectedRoute allowedRoles={['student', 'teacher']}>
+              <AIAssistant />
+            </ProtectedRoute>
+          } />
+          <Route path="/blockchain-certificates" element={
+            <ProtectedRoute allowedRoles={['student', 'teacher']}>
+              <BlockchainCertificates />
+            </ProtectedRoute>
+          } />
 
           {/* Attendance (Teacher/Student) */}
           <Route path="/attendance" element={

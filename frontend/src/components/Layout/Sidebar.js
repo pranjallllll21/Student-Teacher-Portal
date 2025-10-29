@@ -16,6 +16,8 @@ import {
   Cog6ToothIcon,
   UserGroupIcon,
   XMarkIcon,
+  SparklesIcon,
+  ShieldCheckIcon,
 } from '@heroicons/react/24/outline';
 
 const Sidebar = ({ isOpen, onClose }) => {
@@ -210,6 +212,22 @@ const Sidebar = ({ isOpen, onClose }) => {
     },
   ];
 
+  // Future Tech Section - Only for students and teachers
+  const futureTechNavigation = [
+    {
+      name: 'AI Assistant',
+      href: '/ai-assistant',
+      icon: SparklesIcon,
+      roles: ['student', 'teacher'],
+    },
+    {
+      name: 'Blockchain Certificates',
+      href: '/blockchain-certificates',
+      icon: ShieldCheckIcon,
+      roles: ['student', 'teacher'],
+    },
+  ];
+
   const filteredNavigation = navigation.filter(item => 
     hasAnyRole(item.roles)
   );
@@ -219,8 +237,10 @@ const Sidebar = ({ isOpen, onClose }) => {
     ? adminNavigation.filter(item => hasAnyRole(item.roles))
     : filteredNavigation;
 
-  // No future tech section shown anymore per request
-  // Future tech removed
+  // Future Tech Section - Only for students and teachers
+  const filteredFutureTech = futureTechNavigation.filter(item => 
+    hasAnyRole(item.roles)
+  );
 
   const filteredProfile = profileNavigation.filter(item => 
     hasAnyRole(item.roles)
@@ -250,7 +270,7 @@ const Sidebar = ({ isOpen, onClose }) => {
                   {user?.role === 'student' ? '📚' : user?.role === 'teacher' ? '👨‍🏫' : '⚙️'}
                 </span>
               </div>
-              <span className="text-lg font-bold text-gray-900">Portal</span>
+              <span className="text-lg font-bold text-gray-900">SMARTCONNECT</span>
             </div>
             <button
               onClick={onClose}
@@ -334,7 +354,38 @@ const Sidebar = ({ isOpen, onClose }) => {
               })}
             </div>
 
-            {/* Future Tech removed per request */}
+            {/* Future Tech Section - Only for students and teachers */}
+            {user?.role !== 'admin' && filteredFutureTech.length > 0 && (
+              <div className="pt-6">
+                <div className="px-3 mb-3">
+                  <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider flex items-center">
+                    <SparklesIcon className="h-4 w-4 mr-1.5" />
+                    Future Tech
+                  </h3>
+                </div>
+                <div className="space-y-1">
+                  {filteredFutureTech.map((item) => {
+                    return (
+                      <NavLink
+                        key={item.name}
+                        to={item.href}
+                        className={({ isActive }) => `
+                          flex items-center px-3 py-2 text-sm font-medium rounded-md transition-all duration-200
+                          ${isActive 
+                            ? `bg-gradient-to-r from-purple-100 to-pink-100 text-purple-700 border-r-2 border-purple-500 font-semibold` 
+                            : 'text-gray-700 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-700'
+                          }
+                        `}
+                        onClick={onClose}
+                      >
+                        <item.icon className="mr-3 h-5 w-5 flex-shrink-0" />
+                        {item.name}
+                      </NavLink>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* Profile Section - Only for students and teachers, NOT admin */}
             {user?.role !== 'admin' && (

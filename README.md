@@ -1,4 +1,4 @@
-# student teacher portal
+# SMARTCONNECT
 
 A next-generation educational platform built with the MERN stack, featuring gamification, role-based access, and future-ready architecture for AI and blockchain integration.
 
@@ -47,7 +47,7 @@ A next-generation educational platform built with the MERN stack, featuring gami
 2. **Set up Environment Variables**
    ```bash
    # Backend (.env)
-   MONGODB_URI=mongodb://localhost:27017/student-portal
+   MONGODB_URI=mongodb://localhost:27017/smartconnect
    JWT_SECRET=your_jwt_secret_here
    PORT=5000
    ```
@@ -74,7 +74,7 @@ After seeding, you can login with:
 ## Project Structure
 
 ```
-student-teacher-portal/
+smartconnect/
 ├── backend/                 # Express.js API server
 │   ├── models/             # MongoDB models
 │   ├── routes/             # API routes

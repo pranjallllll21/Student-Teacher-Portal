@@ -172,7 +172,7 @@ export const AuthProvider = ({ children }) => {
         payload: { user, token },
       });
 
-      toast.success(`Welcome to the portal, ${user.firstName}!`);
+  toast.success(`Welcome to SMARTCONNECT, ${user.firstName}!`);
       return { success: true };
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Registration failed';

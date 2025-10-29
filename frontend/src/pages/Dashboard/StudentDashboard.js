@@ -108,96 +108,118 @@ const StudentDashboard = () => {
   return (
     <div className="space-y-6">
       {/* Welcome Section */}
-      <div className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 rounded-lg p-6 text-white shadow-xl border border-primary-400/20">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold mb-2">
-              Welcome back, {user?.firstName}! 👋
-            </h1>
-            <p className="text-primary-100">
-              Ready to continue your learning journey? Let's make today productive!
-            </p>
-          </div>
-          <div className="hidden md:block">
-            <div className="text-right">
-              <div className="text-2xl font-bold">Level {stats.level}</div>
-              <div className="text-primary-100">⭐ {stats.totalXP} XP</div>
+      <div className="bg-gradient-to-r from-primary-500 via-primary-600 to-primary-700 rounded-2xl p-8 text-white shadow-2xl border border-primary-400/20 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+        <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full -ml-24 -mb-24"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold mb-2 flex items-center space-x-2">
+                <span>Welcome back, {user?.firstName}!</span>
+                <span className="animate-bounce">👋</span>
+              </h1>
+              <p className="text-primary-100 text-lg">
+                Ready to continue your learning journey? Let's make today productive!
+              </p>
+            </div>
+            <div className="hidden md:block">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-right border border-white/20">
+                <div className="text-3xl font-bold">Level {stats.level}</div>
+                <div className="text-primary-100 flex items-center justify-end space-x-1">
+                  <TrophyIcon className="h-5 w-5" />
+                  <span>{stats.totalXP} XP</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        
-        {/* XP Progress Bar */}
-        <div className="mt-4">
-          <div className="flex items-center justify-between text-sm mb-2">
-            <span>Progress to Level {stats.level + 1}</span>
-            <span>{xpToNextLevel} XP to go</span>
-          </div>
-          <div className="w-full bg-primary-800 rounded-full h-2">
-            <div 
-              className="bg-white h-2 rounded-full transition-all duration-500"
-              style={{ width: `${xpProgress}%` }}
-            ></div>
+          
+          {/* XP Progress Bar */}
+          <div className="mt-6 bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+            <div className="flex items-center justify-between text-sm mb-3">
+              <span className="font-medium">Progress to Level {stats.level + 1}</span>
+              <span className="bg-white/20 px-3 py-1 rounded-full font-semibold">{xpToNextLevel} XP to go</span>
+            </div>
+            <div className="w-full bg-primary-900/50 rounded-full h-3 shadow-inner">
+              <div 
+                className="bg-gradient-to-r from-yellow-400 to-orange-400 h-3 rounded-full transition-all duration-500 shadow-lg"
+                style={{ width: `${xpProgress}%` }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <StatCard
-          title="Enrolled Courses"
-          value={stats.enrolledCourses}
-          icon={<AcademicCapIcon className="h-8 w-8" />}
-          iconColor="primary"
-          change="+2 this month"
-          changeType="positive"
-        />
-        <StatCard
-          title="Assignments Completed"
-          value={stats.completedAssignments}
-          icon={<ClipboardDocumentListIcon className="h-8 w-8" />}
-          iconColor="accent"
-          change="+3 this week"
-          changeType="positive"
-        />
-        <StatCard
-          title="Quizzes Taken"
-          value={stats.takenQuizzes}
-          icon={<QuestionMarkCircleIcon className="h-8 w-8" />}
-          iconColor="info"
-          change="+1 today"
-          changeType="positive"
-        />
-        <StatCard
-          title="Total XP"
-          value={stats.totalXP}
-          icon={<TrophyIcon className="h-8 w-8" />}
-          iconColor="warning"
-          change="+50 today"
-          changeType="positive"
-        />
+        <div className="transform transition-all hover:scale-105 hover:shadow-xl">
+          <StatCard
+            title="Enrolled Courses"
+            value={stats.enrolledCourses}
+            icon={<AcademicCapIcon className="h-8 w-8" />}
+            iconColor="primary"
+            change="+2 this month"
+            changeType="positive"
+          />
+        </div>
+        <div className="transform transition-all hover:scale-105 hover:shadow-xl">
+          <StatCard
+            title="Assignments Completed"
+            value={stats.completedAssignments}
+            icon={<ClipboardDocumentListIcon className="h-8 w-8" />}
+            iconColor="accent"
+            change="+3 this week"
+            changeType="positive"
+          />
+        </div>
+        <div className="transform transition-all hover:scale-105 hover:shadow-xl">
+          <StatCard
+            title="Quizzes Taken"
+            value={stats.takenQuizzes}
+            icon={<QuestionMarkCircleIcon className="h-8 w-8" />}
+            iconColor="info"
+            change="+1 today"
+            changeType="positive"
+          />
+        </div>
+        <div className="transform transition-all hover:scale-105 hover:shadow-xl">
+          <StatCard
+            title="Total XP"
+            value={stats.totalXP}
+            icon={<TrophyIcon className="h-8 w-8" />}
+            iconColor="warning"
+            change="+50 today"
+            changeType="positive"
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Recent Courses */}
         <div className="lg:col-span-2">
-          <div className="card">
-            <div className="card-header">
+          <div className="card shadow-lg hover:shadow-xl transition-shadow">
+            <div className="card-header bg-gradient-to-r from-blue-50 to-indigo-50">
               <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-900">My Courses</h2>
+                <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                  <AcademicCapIcon className="h-6 w-6 text-primary-600" />
+                  <span>My Courses</span>
+                </h2>
                 <Link to="/my-courses">
-                  <Button variant="outline" size="sm">View All</Button>
+                  <Button variant="outline" size="sm" className="hover:bg-primary-50">View All</Button>
                 </Link>
               </div>
             </div>
             <div className="card-body">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {recentCourses.map((course) => (
-                  <CourseCard
-                    key={course.id}
-                    course={course}
-                    onView={(course) => console.log('View course:', course)}
-                    onEnroll={(course) => console.log('Enroll in course:', course)}
-                  />
+                  <div key={course.id} className="transform transition-all hover:scale-105">
+                    <CourseCard
+                      course={course}
+                      onView={(course) => console.log('View course:', course)}
+                      onEnroll={(course) => console.log('Enroll in course:', course)}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
@@ -206,28 +228,35 @@ const StudentDashboard = () => {
 
         {/* Upcoming Assignments */}
         <div>
-          <div className="card">
-            <div className="card-header">
-              <h2 className="text-lg font-semibold text-gray-900">Upcoming Assignments</h2>
+          <div className="card shadow-lg hover:shadow-xl transition-shadow">
+            <div className="card-header bg-gradient-to-r from-orange-50 to-red-50">
+              <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                <ClipboardDocumentListIcon className="h-6 w-6 text-orange-600" />
+                <span>Upcoming Assignments</span>
+              </h2>
             </div>
             <div className="card-body">
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {upcomingAssignments.map((assignment) => (
-                  <div key={assignment.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                    <div>
-                      <h3 className="font-medium text-gray-900">{assignment.title}</h3>
-                      <p className="text-sm text-gray-600">{assignment.course}</p>
-                      <p className="text-xs text-gray-500">Due: {assignment.dueDate}</p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-sm font-medium text-gray-900">{assignment.points} pts</div>
+                  <div key={assignment.id} className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-orange-50 rounded-xl border border-orange-100 hover:shadow-md transition-all hover:border-orange-200">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-gray-900">{assignment.title}</h3>
+                      <p className="text-sm text-gray-600 mt-1">{assignment.course}</p>
+                      <div className="flex items-center space-x-2 mt-2">
+                        <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded-full font-medium">
+                          Due: {assignment.dueDate}
+                        </span>
+                        <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full font-medium">
+                          {assignment.points} pts
+                        </span>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
               <div className="mt-4">
                 <Link to="/assignments">
-                  <Button variant="outline" size="sm" fullWidth>
+                  <Button variant="outline" size="sm" fullWidth className="hover:bg-orange-50">
                     View All Assignments
                   </Button>
                 </Link>
@@ -238,32 +267,43 @@ const StudentDashboard = () => {
       </div>
 
       {/* Quick Actions */}
-      <div className="card">
-        <div className="card-header">
-          <h2 className="text-lg font-semibold text-gray-900">Quick Actions</h2>
+      <div className="card shadow-lg hover:shadow-xl transition-shadow">
+        <div className="card-header bg-gradient-to-r from-purple-50 to-pink-50">
+          <h2 className="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+            <SparklesIcon className="h-6 w-6 text-purple-600" />
+            <span>Quick Actions</span>
+          </h2>
         </div>
         <div className="card-body">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <FeatureCard
-              title="Take Quiz"
-              description="Test your knowledge with interactive quizzes"
-              icon={<QuestionMarkCircleIcon className="h-8 w-8" />}
-            />
-            <FeatureCard
-              title="View Leaderboard"
-              description="See how you rank among your peers"
-              icon={<TrophyIcon className="h-8 w-8" />}
-            />
-            <FeatureCard
-              title="Check Analytics"
-              description="Track your learning progress and performance"
-              icon={<ChartBarIcon className="h-8 w-8" />}
-            />
-            <FeatureCard
-              title="AI Assistant"
-              description="Get help from our smart learning assistant"
-              icon={<SparklesIcon className="h-8 w-8" />}
-            />
+            <Link to="/quizzes" className="transform transition-all hover:scale-105">
+              <FeatureCard
+                title="Take Quiz"
+                description="Test your knowledge with interactive quizzes"
+                icon={<QuestionMarkCircleIcon className="h-8 w-8" />}
+              />
+            </Link>
+            <Link to="/leaderboard" className="transform transition-all hover:scale-105">
+              <FeatureCard
+                title="View Leaderboard"
+                description="See how you rank among your peers"
+                icon={<TrophyIcon className="h-8 w-8" />}
+              />
+            </Link>
+            <Link to="/analytics" className="transform transition-all hover:scale-105">
+              <FeatureCard
+                title="Check Analytics"
+                description="Track your learning progress and performance"
+                icon={<ChartBarIcon className="h-8 w-8" />}
+              />
+            </Link>
+            <Link to="/ai-assistant" className="transform transition-all hover:scale-105">
+              <FeatureCard
+                title="AI Assistant"
+                description="Get help from our smart learning assistant"
+                icon={<SparklesIcon className="h-8 w-8" />}
+              />
+            </Link>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 {
-  "name": "student-portal-backend",
+  "name": "smartconnect-backend",
   "version": "1.0.0",
-  "description": "Backend API for Student-Teacher Portal",
+  "description": "Backend API for SMARTCONNECT",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

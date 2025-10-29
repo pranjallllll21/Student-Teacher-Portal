@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Input, Button } from '../../components/UI';
-import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { EyeIcon, EyeSlashIcon, EnvelopeIcon, LockClosedIcon, SparklesIcon, AcademicCapIcon, UserGroupIcon, Cog6ToothIcon } from '@heroicons/react/24/outline';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -97,25 +97,43 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-        <p className="text-gray-600">Sign in to your account to continue</p>
+    <div className="space-y-8">
+      {/* Header Section with Animation */}
+      <div className="text-center space-y-4">
+        <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 via-primary-600 to-purple-600 rounded-2xl shadow-xl mb-4 animate-pulse">
+          <SparklesIcon className="h-10 w-10 text-white" />
+        </div>
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent">
+          Welcome Back!
+        </h1>
+        <p className="text-gray-600 text-lg">Sign in to continue your learning journey</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <Input
-          label="Email Address"
-          type="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          error={errors.email}
-          placeholder="Enter your email"
-          required
-        />
+      {/* Main Form */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Email Input with Icon */}
+        <div className="relative group">
+          <div className="absolute left-3 top-9 text-gray-400 group-focus-within:text-primary-600 transition-colors">
+            <EnvelopeIcon className="h-5 w-5" />
+          </div>
+          <Input
+            label="Email Address"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            error={errors.email}
+            placeholder="you@example.com"
+            className="pl-10"
+            required
+          />
+        </div>
 
-        <div className="relative">
+        {/* Password Input with Icon and Toggle */}
+        <div className="relative group">
+          <div className="absolute left-3 top-9 text-gray-400 group-focus-within:text-primary-600 transition-colors">
+            <LockClosedIcon className="h-5 w-5" />
+          </div>
           <Input
             label="Password"
             type={showPassword ? 'text' : 'password'}
@@ -124,11 +142,12 @@ const Login = () => {
             onChange={handleChange}
             error={errors.password}
             placeholder="Enter your password"
+            className="pl-10 pr-12"
             required
           />
           <button
             type="button"
-            className="absolute right-3 top-8 text-gray-400 hover:text-gray-600"
+            className="absolute right-3 top-9 text-gray-400 hover:text-primary-600 transition-colors focus:outline-none"
             onClick={() => setShowPassword(!showPassword)}
           >
             {showPassword ? (
@@ -139,88 +158,116 @@ const Login = () => {
           </button>
         </div>
 
+        {/* Remember Me & Forgot Password */}
         <div className="flex items-center justify-between">
-          <label className="flex items-center">
+          <label className="flex items-center group cursor-pointer">
             <input
               type="checkbox"
-              className="form-checkbox h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
+              className="form-checkbox h-4 w-4 text-primary-600 focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 border-gray-300 rounded transition-all"
             />
-            <span className="ml-2 text-sm text-gray-700">Remember me</span>
+            <span className="ml-2 text-sm text-gray-700 group-hover:text-gray-900 transition-colors">Remember me</span>
           </label>
           
           <Link
             to="/forgot-password"
-            className="text-sm text-primary-600 hover:text-primary-700"
+            className="text-sm font-medium text-primary-600 hover:text-primary-700 hover:underline transition-all"
           >
             Forgot password?
           </Link>
         </div>
 
+        {/* Sign In Button with Gradient */}
         <Button
           type="submit"
-          variant="primary"
-          size="lg"
+          className="w-full bg-gradient-to-r from-primary-600 to-purple-600 hover:from-primary-700 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
           loading={loading}
-          fullWidth
         >
-          Sign In
+          {loading ? 'Signing in...' : 'Sign In'}
         </Button>
       </form>
 
-      <div className="mt-6">
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300" />
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Or try demo accounts</span>
-          </div>
+      {/* Divider */}
+      <div className="relative">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t-2 border-gray-200" />
         </div>
-
-        <div className="mt-4 grid grid-cols-3 gap-3">
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => handleDemoLogin('student')}
-            loading={loading}
-            fullWidth
-          >
-            Student Demo
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => handleDemoLogin('teacher')}
-            loading={loading}
-            fullWidth
-          >
-            Teacher Demo
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => handleDemoLogin('admin')}
-            loading={loading}
-            fullWidth
-          >
-            Admin Demo
-          </Button>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-4 bg-white text-gray-500 font-medium">Quick Demo Access</span>
         </div>
       </div>
 
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-600">
+      {/* Demo Account Buttons with Icons */}
+      <div className="grid grid-cols-3 gap-3">
+        <button
+          type="button"
+          onClick={() => handleDemoLogin('student')}
+          disabled={loading}
+          className="group relative overflow-hidden bg-gradient-to-br from-blue-50 to-blue-100 hover:from-blue-100 hover:to-blue-200 border-2 border-blue-200 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <AcademicCapIcon className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xs font-semibold text-blue-700">Student</span>
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleDemoLogin('teacher')}
+          disabled={loading}
+          className="group relative overflow-hidden bg-gradient-to-br from-green-50 to-green-100 hover:from-green-100 hover:to-green-200 border-2 border-green-200 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <UserGroupIcon className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xs font-semibold text-green-700">Teacher</span>
+          </div>
+        </button>
+
+        <button
+          type="button"
+          onClick={() => handleDemoLogin('admin')}
+          disabled={loading}
+          className="group relative overflow-hidden bg-gradient-to-br from-purple-50 to-purple-100 hover:from-purple-100 hover:to-purple-200 border-2 border-purple-200 rounded-xl p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          <div className="flex flex-col items-center space-y-2">
+            <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Cog6ToothIcon className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-xs font-semibold text-purple-700">Admin</span>
+          </div>
+        </button>
+      </div>
+
+      {/* Sign Up Link */}
+      <div className="text-center pt-4">
+        <p className="text-gray-600">
           Don't have an account?{' '}
           <Link
             to="/register"
-            className="text-primary-600 hover:text-primary-700 font-medium"
+            className="font-semibold text-primary-600 hover:text-primary-700 hover:underline transition-all"
           >
-            Sign up here
+            Create one now
           </Link>
         </p>
+      </div>
+
+      {/* Features Footer */}
+      <div className="grid grid-cols-3 gap-4 pt-6 border-t border-gray-200">
+        <div className="text-center">
+          <div className="text-2xl mb-1">🎯</div>
+          <p className="text-xs text-gray-600">Smart Learning</p>
+        </div>
+        <div className="text-center">
+          <div className="text-2xl mb-1">⚡</div>
+          <p className="text-xs text-gray-600">Real-time Sync</p>
+        </div>
+        <div className="text-center">
+          <div className="text-2xl mb-1">🏆</div>
+          <p className="text-xs text-gray-600">Achievements</p>
+        </div>
       </div>
     </div>
   );
